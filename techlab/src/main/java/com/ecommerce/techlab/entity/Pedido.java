@@ -39,6 +39,14 @@ public class Pedido {
     @Column(name = "fecha_actualizacion")
     private LocalDateTime fechaActualizacion;
 
+    public Pedido() {
+
+    }
+
+    public Pedido(Usuario usuario) {
+        this.usuario = usuario; // Asume que tienes un campo 'usuario' en la clase Pedido
+    }
+
     public BigDecimal calcularTotal() {
         BigDecimal totalCalculado = BigDecimal.ZERO;
         for (LineaPedido linea : lineasPedido) {

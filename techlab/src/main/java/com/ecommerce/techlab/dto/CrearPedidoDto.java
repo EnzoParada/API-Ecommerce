@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class CrearPedidoDTO {
+public class CrearPedidoDto {
     @NotNull(message = "El ID del usuario es obligatorio")
     private Long usuarioId;
 

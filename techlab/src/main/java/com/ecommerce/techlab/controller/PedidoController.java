@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.ecommerce.techlab.service.*;
+import com.ecommerce.techlab.dto.*;
+import com.ecommerce.techlab.entity.*;
 
 import java.util.List;
 
@@ -42,8 +45,8 @@ public class PedidoController {
     }
 
     @PostMapping
-    public ResponseEntity<Pedido> crear(@Valid @RequestBody CrearPedidoDTO crearPedidoDTO) {
-        Pedido pedido = pedidoService.crear(crearPedidoDTO);
+    public ResponseEntity<Pedido> crear(@Valid @RequestBody CrearPedidoDto crearPedidoDto) {
+        Pedido pedido = pedidoService.crear(crearPedidoDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(pedido);
     }
 

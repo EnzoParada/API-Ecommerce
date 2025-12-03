@@ -1,6 +1,7 @@
 package com.ecommerce.techlab.controller;
 
 import com.ecommerce.techlab.entity.*;
+import com.ecommerce.techlab.service.CategoriaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,8 +20,8 @@ public class CategoriaController {
 
     @GetMapping
     public ResponseEntity<List<Categoria>> listarTodas() {
-        List<Categoria> categorias = categoriaService.listarTodas();
-        return ResponseEntity.ok(categorias);
+        List<Categoria> categories = categoriaService.listarTodas();
+        return ResponseEntity.ok(categories);
     }
 
     @GetMapping("/{id}")

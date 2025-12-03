@@ -1,10 +1,15 @@
 package com.ecommerce.techlab.controller;
 
+import com.ecommerce.techlab.service.ProductoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.ecommerce.techlab.dto.*;
+import com.ecommerce.techlab.entity.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/productos")
@@ -16,38 +21,38 @@ public class ProductoController {
     private ProductoService productoService;
 
     @GetMapping
-    public ResponseEntity<List<ProductoDTO>> listarTodos() {
-        List<ProductoDTO> productos = productoService.listarTodos();
+    public ResponseEntity<List<ProductoDto>> listarTodos() {
+        List<ProductoDto> productos = productoService.listarTodos();
         return ResponseEntity.ok(productos);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductoDTO> buscarPorId(@PathVariable Long id) {
-        ProductoDTO producto = productoService.buscarPorId(id);
+    public ResponseEntity<ProductoDto> buscarPorId(@PathVariable Long id) {
+        ProductoDto producto = productoService.buscarPorId(id);
         return ResponseEntity.ok(producto);
     }
 
     @GetMapping("/buscar")
-    public ResponseEntity<List<ProductoDTO>> buscarPorNombre(@RequestParam String nombre) {
-        List<ProductoDTO> productos = productoService.buscarPorNombre(nombre);
+    public ResponseEntity<List<ProductoDto>> buscarPorNombre(@RequestParam String nombre) {
+        List<ProductoDto> productos = productoService.buscarPorNombre(nombre);
         return ResponseEntity.ok(productos);
     }
 
     @GetMapping("/categoria/{categoriaId}")
-    public ResponseEntity<List<ProductoDTO>> buscarPorCategoria(@PathVariable Long categoriaId) {
-        List<ProductoDTO> productos = productoService.buscarPorCategoria(categoriaId);
+    public ResponseEntity<List<ProductoDto>> buscarPorCategoria(@PathVariable Long categoriaId) {
+        List<ProductoDto> productos = productoService.buscarPorCategoria(categoriaId);
         return ResponseEntity.ok(productos);
     }
 
     @PostMapping
-    public ResponseEntity<ProductoDTO> crear(@Valid @RequestBody Producto producto) {
-        ProductoDTO productoCreado = productoService.crear(producto);
+    public ResponseEntity<ProductoDto> crear(@Valid @RequestBody Producto producto) {
+        ProductoDto productoCreado = productoService.crear(producto);
         return ResponseEntity.status(HttpStatus.CREATED).body(productoCreado);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductoDTO> actualizar(@PathVariable Long id, @Valid @RequestBody Producto producto) {
-        ProductoDTO productoActualizado = productoService.actualizar(id, producto);
+    public ResponseEntity<ProductoDto> actualizar(@PathVariable Long id, @Valid @RequestBody Producto producto) {
+        ProductoDto productoActualizado = productoService.actualizar(id, producto);
         return ResponseEntity.ok(productoActualizado);
     }
 
@@ -58,8 +63,8 @@ public class ProductoController {
     }
 
     @GetMapping("/stock-bajo")
-    public ResponseEntity<List<ProductoDTO>> productosConStockBajo(@RequestParam(defaultValue = "10") Integer stockMinimo) {
-        List<ProductoDTO> productos = productoService.productosConStockBajo(stockMinimo);
+    public ResponseEntity<List<ProductoDto>> productosConStockBajo(@RequestParam(defaultValue = "10") Integer stockMinimo) {
+        List<ProductoDto> productos = productoService.productosConStockBajo(stockMinimo);
         return ResponseEntity.ok(productos);
     }
 }
